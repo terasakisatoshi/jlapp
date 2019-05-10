@@ -1,4 +1,4 @@
-FROM arm32v7/julia:1.0.3-stretch
+FROM terasakisatoshi/jlcross:rpi3-1.1.0
 
 MAINTAINER SATOSHI TERASAKI
 
