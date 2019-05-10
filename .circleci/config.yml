@@ -18,3 +18,7 @@ jobs:
           name: build julia
           command: |
             docker build -t ${DOCKER_USER}/jlapp:rpi3 ./rpi3
+      - run:
+          name: push to dockerhub
+          command: |
+            docker push ${DOCKER_USER}/jlapp:rpi3
