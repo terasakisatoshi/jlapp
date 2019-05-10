@@ -1,4 +1,4 @@
-FROM julia:1.0.3
+FROM arm32v7/julia:1.0.3
 
 MAINTAINER SATOSHI TERASAKI
 
