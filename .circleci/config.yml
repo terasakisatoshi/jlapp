@@ -21,6 +21,7 @@ jobs:
           name: build julia cross
           command: |
             docker build -t ${DOCKER_USER}/jlapp:rpi3 ./rpi3/jl_cross
+          no_output_timeout: 1.0h
       - run:
           name: push to dockerhub
           command: |
