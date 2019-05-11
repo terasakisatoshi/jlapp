@@ -38,3 +38,32 @@ RUN wget --quiet https://github.com/jjhelmus/berryconda/releases/download/v2.0.0
     /bin/bash Berryconda3-2.0.0-Linux-armv7l.sh -bf && \
     rm Berryconda3-2.0.0-Linux-armv7l.sh
 
+ENV PATH=/root/berryconda3/bin:$PATH
+RUN wget --quiet https://github.com/jjhelmus/berryconda/releases/download/v2.0.0/Berryconda3-2.0.0-Linux-armv7l.sh && \
+    /bin/bash Berryconda3-2.0.0-Linux-armv7l.sh -bf && \
+    rm Berryconda3-2.0.0-Linux-armv7l.sh
+RUN pip install --upgrade pip && \
+    pip install julia
+RUN conda install -y numpy pandas scipy scikit-learn \
+                     matplotlib sympy jupyter
+RUN conda install -y -c conda-forge opencv
+# install Julia packagess
+RUN julia -e 'using Pkg; \
+              ENV["PYTHON"] = Sys.which("python"); \
+              Pkg.add(["PyCall", "PyPlot", "SymPy", "IJulia"]); \
+              using PyCall, PyPlot, SymPy, IJulia'
+RUN julia -e 'using Pkg; \
+              Pkg.add(["UnicodePlots", "GR", "Plots"]); \
+              using UnicodePlots, GR, Plots'
+RUN julia -e 'using Pkg; \
+              Pkg.add(["Images", "ImageMagick", "ImageMetadata", "TestImages"]); \
+              using Images, ImageMagick, ImageMetadata, TestImages'
+#do not import/using ImageView here!
+RUN julia -e 'using Pkg; Pkg.add("ImageView")'
+RUN julia -e 'using Pkg; \
+              Pkg.add(["ArgParse", "BenchmarkTools", "Distributed", "Debugger", "JuliaInterpreter", "Revise"]); \
+              using ArgParse, BenchmarkTools, Distributed, Debugger, JuliaInterpreter, Revise'
+# disable error such that:
+# X Error: BadAccess (attempt to access private resource denied) 10
+ENV QT_X11_NO_MITSHM=1
+RUN apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
