@@ -1,20 +1,15 @@
 version: 2
 jobs:
   build:
-    machine: true
+    # set machine
+    # machine: true
     steps:
-      #- setup_remote_docker:
-      #    # we can see available docker version
-      #    # https://circleci.com/docs/2.0/building-docker-images/#docker-version
-      #    version: 18.06.0-ce
-      #    docker_layer_caching: true
+      - setup_remote_docker:
+          # we can see available docker version
+          # https://circleci.com/docs/2.0/building-docker-images/#docker-version
+          version: 18.06.0-ce
+          docker_layer_caching: true
       - checkout
-      #- run:
-      #    name: install docker-machine
-      #    command: |
-      #      base=https://github.com/docker/machine/releases/download/v0.16.0 &&
-      #      curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine &&
-      #      sudo install /tmp/docker-machine /usr/local/bin/docker-machine'
       - run:
           name: Enable qemu
           command: docker run --rm --privileged multiarch/qemu-user-static:register --reset
