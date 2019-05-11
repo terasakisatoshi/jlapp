@@ -1,9 +1,14 @@
 version: 2
 jobs:
   build:
-    # set machine
-    machine: true
+    docker:
+      - image: circleci/python
     steps:
+      - setup_remote_docker:
+          # we can see available docker version
+          # https://circleci.com/docs/2.0/building-docker-images/#docker-version
+          version: 18.06.0-ce
+          docker_layer_caching: true
       - checkout
       - run:
           name: Enable qemu
