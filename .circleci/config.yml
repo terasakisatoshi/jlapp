@@ -22,10 +22,10 @@ jobs:
           name: login docker
           command: |
             docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
-      #- run:
-      #    name: build julia cross
-      #    command: |
-      #      docker build -t ${DOCKER_USER}/jlapp:rpi3-jl-xc ./rpi3/jl_cross
+      - run:
+          name: build julia cross
+          command: |
+            docker build -t ${DOCKER_USER}/jlapp:rpi3-jl-xc ./rpi3/jl_cross
       - run:
           name: build julia official
           command: |
