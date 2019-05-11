@@ -3,6 +3,7 @@ jobs:
   build:
     # set machine
     # machine: true
+    docker:
     steps:
       - setup_remote_docker:
           # we can see available docker version
