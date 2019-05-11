@@ -17,7 +17,11 @@ jobs:
       - run:
           name: build julia
           command: |
-            docker build -t ${DOCKER_USER}/jlapp:rpi3 ./rpi3
+            docker build -t ${DOCKER_USER}/jlapp:rpi3-jl-xc ./rpi3/jl_cross
+      - run:
+          name: build julia
+          command: |
+            docker build -t ${DOCKER_USER}/jlapp:rpi3-jl-official ./rpi3/jl_official
       - run:
           name: push to dockerhub
           command: |
