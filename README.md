@@ -1,6 +1,8 @@
 # jlapp
 Julia image some application packages included
 
+[![CircleCI](https://circleci.com/gh/terasakisatoshi/jlapp.svg?style=svg)](https://circleci.com/gh/terasakisatoshi/jlapp)
+
 # terasakisatoshi/jlapp:latest
 
 This docker image provides easy setup of Julia image with Python environment used for PyCall.jl.
