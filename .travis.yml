@@ -7,6 +7,8 @@ language: bash
 script:
 # prepare qemu
 - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+# test base image
+- docker run --rm arm32v7/julia:1.0.3-stretch julia -e 'println("Hello")'
 # build image
 - docker build -t jlapp:rpi3 ./rpi3/jl_official
 
