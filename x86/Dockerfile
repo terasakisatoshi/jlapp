@@ -1,4 +1,4 @@
-FROM julia:1.1.0
+FROM julia:1.1.1
 MAINTAINER SATOSHI TERASAKI
 # for Jupyter
 EXPOSE 8888 
