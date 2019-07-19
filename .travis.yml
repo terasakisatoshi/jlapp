@@ -6,6 +6,7 @@ services:
 language: bash
 script:
 # prepare qemu
+- apt install qemu-user-static binfmt-support
 - docker run --rm --privileged multiarch/qemu-user-static:register --reset
 # build image
 - docker build -t jlapp:rpi3 ./rpi3/jl_official
